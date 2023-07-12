@@ -1,7 +1,6 @@
+// SPDX-FileCopyrightText: 2023 The WinLinTDPControl Developers
+//
+// SPDX-License-Identifier: MIT
+
 #![no_main]
 #![no_std]
-
-use kernel_alloc::KernelAlloc;
-
-#[global_allocator]
-static GLOBAL: KernelAlloc = KernelAlloc;

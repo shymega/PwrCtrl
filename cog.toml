@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 The WinLinTDPControl Developers
+#
+# SPDX-License-Identifier: MIT
+
 ignore_merge_commits = false
 branch_whitelist = []
 pre_bump_hooks = []
