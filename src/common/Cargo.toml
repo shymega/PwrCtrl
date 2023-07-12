@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: MIT
 
 [package]
-name = "winlin-tdp-control-common"
+name = "winlintdpcontrol-common"
 version = "0.1.0"
 edition = "2021"
 
