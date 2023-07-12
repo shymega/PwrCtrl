@@ -1,0 +1,11 @@
+[package]
+name = "windows-tdp-control"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+kernel-alloc = "0.2.2"
+kernel-log = "0.1.2"
+
+[build-dependencies]
+kernel-build = "0.1.0"

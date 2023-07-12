@@ -1,0 +1,6 @@
+[workspace]
+members = [
+    "src/kernel/linux",
+    "src/kernel/windows",
+    "src/common"
+]
