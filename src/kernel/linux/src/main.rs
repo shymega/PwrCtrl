@@ -1,7 +1,7 @@
 // SPDX-FileCopyrightText: The WinLinTDPControl Developers
 //
 // SPDX-License-Identifier: MIT
-//! Entrypoint for `WinLinTDPControl` Windows (Win32) kernel module .
+//! Entrypoint for `WinLinTDPControl` Linux kernel module .
 #![deny(
     warnings,
     missing_copy_implementations,
