@@ -8,3 +8,5 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+anyhow = { version = "1.0.72", default-features = false }
+thiserror-no-std = "2.0.2"
