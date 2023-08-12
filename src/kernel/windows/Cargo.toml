@@ -8,6 +8,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+winlintdpcontrol-common = { path = "../../common" }
 
 [build-dependencies]
 kernel-build = "0.1.0"
