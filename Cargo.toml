@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: The WinLinTDPControl Developers
+# SPDX-FileCopyrightText: The PwrCtrl Developers
 #
 # SPDX-License-Identifier: Apache-2.0
 
@@ -18,8 +18,8 @@ version = "0.1.0"
 rust-version = "1.73.0"
 license = "Apache-2.0"
 readme = "/README.md"
-repository = "https://github.com/shymega/WinLinTDPControl.git"
-homepage = "https://github.com/shymega/WinLinTDPControl"
+repository = "https://github.com/shymega/PwrCtrl.git"
+homepage = "https://github.com/shymega/PwrCtrl"
 edition = "2021"
 categories = ["osdev", "no-std"]
 keywords = ["tdp", "gaming", "cpu", "gpu", "osdev"]

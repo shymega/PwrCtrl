@@ -1,7 +1,7 @@
 [package]
 authors.workspace = true
 categories.workspace = true
-description = "Stub program for WinLinTDPControl"
+description = "Stub program for PwrCtrl"
 edition.workspace = true
 homepage.workspace = true
 keywords.workspace = true

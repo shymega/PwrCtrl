@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2023 The WinLinTDPControl Developers
+SPDX-FileCopyrightText: 2023 The PwrCtrl Developers
 
 SPDX-License-Identifier: Apache-2.0
 -->
 
-# WinLinTDPControl
+# PwrCtrl
 
 Windows/Linux kernel driver and tooling for controlling TDP on handhelds.
 

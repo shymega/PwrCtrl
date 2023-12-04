@@ -227,7 +227,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
 
 [[package]]
-name = "winlintdpcontrol-common"
+name = "pwrctrl-common"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -235,18 +235,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "winlintdpcontrol-linux"
+name = "pwrctrl-linux"
 version = "0.1.0"
 dependencies = [
- "winlintdpcontrol-common",
+ "pwrctrl-common",
 ]
 
 [[package]]
-name = "winlintdpcontrol-windows"
+name = "pwrctrl-windows"
 version = "0.1.0"
 dependencies = [
  "kernel-build",
- "winlintdpcontrol-common",
+ "pwrctrl-common",
 ]
 
 [[package]]

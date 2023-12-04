@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 The WinLinTDPControl Developers
+# SPDX-FileCopyrightText: 2023 The PwrCtrl Developers
 #
 # SPDX-License-Identifier: Apache-2.0
 

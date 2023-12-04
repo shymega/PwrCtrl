@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: The WinLinTDPControl Developers
+// SPDX-FileCopyrightText: The PwrCtrl Developers
 //
 // SPDX-License-Identifier: Apache-2.0
-//! Entrypoint for `WinLinTDPControl` Linux kernel module .
+//! Entrypoint for `PwrCtrl` Linux kernel module .
 #![deny(
     warnings,
     missing_copy_implementations,

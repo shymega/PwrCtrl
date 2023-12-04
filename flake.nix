@@ -1,9 +1,9 @@
-# SPDX-FileCopyrightText: 2023 The WinLinTDPControl Developers
+# SPDX-FileCopyrightText: 2023 The PwrCtrl Developers
 #
 # SPDX-License-Identifier: Apache-2.0
 
 {
-  description = "Nix Flake for WinLinTdpControl";
+  description = "Nix Flake for PwrCtrl";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
@@ -19,8 +19,8 @@
           pkgs = nixpkgs.outputs.legacyPackages.${system};
         in
         {
-          packages.winlintdpcontrol = pkgs.callPackage ./winlintdpcontrol.nix { };
-          packages.default = self.outputs.packages.${system}.winlintdpcontrol;
+          packages.pwrctrl = pkgs.callPackage ./pwrctrl.nix { };
+          packages.default = self.outputs.packages.${system}.pwrctrl;
 
           devShells.default = self.packages.${system}.default.overrideAttrs (super: {
             nativeBuildInputs = with pkgs;
@@ -35,7 +35,7 @@
         })
     // {
       overlays.default = final: prev: {
-        inherit (self.packages.${final.system}) winlintdpcontrol;
+        inherit (self.packages.${final.system}) pwrctrl;
       };
     };
 }

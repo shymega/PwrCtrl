@@ -1,7 +1,7 @@
-// SPDX-FileCopyrightText: The WinLinTDPControl Developers
+// SPDX-FileCopyrightText: The PwrCtrl Developers
 //
 // SPDX-License-Identifier: Apache-2.0
-//! Common (shared) crate for `WinLinTDPControl`.
+//! Common (shared) crate for `PwrCtrl`.
 #![deny(
     warnings,
     missing_copy_implementations,
@@ -89,6 +89,6 @@ pub enum IntelCpuFamilyKind {
 }
 
 pub mod reexports {
-    //! Re-exports of `WinLinTDPControl` components.
+    //! Re-exports of `PwrCtrl` components.
     pub use super::{OsKind, TdpControl, TdpControlError, TdpControlResult};
 }

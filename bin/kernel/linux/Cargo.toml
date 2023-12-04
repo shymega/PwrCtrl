@@ -1,20 +1,20 @@
-# SPDX-FileCopyrightText: The WinLinTDPControl Developers
+# SPDX-FileCopyrightText: The PwrCtrl Developers
 #
 # SPDX-License-Identifier: Apache-2.0
 
 [package]
 authors.workspace = true
 categories.workspace = true
-description = "Linux kernel driver for WinLinTDPControl"
+description = "Linux kernel driver for PwrCtrl"
 edition.workspace = true
 homepage.workspace = true
 keywords.workspace = true
 license.workspace = true
-name = "winlintdpcontrol-linux"
+name = "pwrctrl-linux"
 readme.workspace = true
 repository.workspace = true
 rust-version.workspace = true
 version.workspace = true
 
 [dependencies]
-winlintdpcontrol-common = { path = "../../../lib/common" }
+pwrctrl-common = { path = "../../../lib/common" }
