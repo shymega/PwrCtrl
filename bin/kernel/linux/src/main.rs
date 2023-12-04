@@ -21,5 +21,5 @@
 
 #[cfg(target_os = "linux")]
 fn _start() {
-    unimplemented!();
+    unimplemented!()
 }
