@@ -19,11 +19,11 @@
 #![no_main]
 #![no_std]
 
-use thiserror_no_std::Error;
 use anyhow::Result;
+use thiserror_no_std::Error;
 
-#[derive(Debug, Default, PartialEq, Eq)]
-enum OsKind {
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
+pub enum OsKind {
     #[cfg(target_os = "windows")]
     Windows,
     #[cfg(target_os = "linux")]
@@ -32,27 +32,17 @@ enum OsKind {
     Unselected,
 }
 
-#[derive(Debug, PartialEq, Eq, Error)]
-enum TdpControlError {
-    ControlInterfaceError {
-        os: OsKind,
-    },
-    GenericDriverError{
-        os: OsKind,
-    },
-    GetTdpError {
-        os: OsKind,
-        cpu: CpuKind
-    },
-    SetTdpError {
-        os: OsKind,
-        cpu: CpuKind
-    },
+#[derive(Debug, PartialEq, Eq, Error, Clone, Copy)]
+pub enum TdpControlError {
+    ControlInterfaceError { os: OsKind },
+    GenericDriverError { os: OsKind },
+    GetTdpError { os: OsKind, cpu: CpuKind },
+    SetTdpError { os: OsKind, cpu: CpuKind },
 }
 
-type TdpControlResult<T, E = TdpControlError> = Result<T, E>;
+pub type TdpControlResult<T, E = TdpControlError> = Result<T, E>;
 
-trait TdpControl {
+pub trait TdpControl {
     fn set_tdp(tdp: i64) -> TdpControlResult<()>;
     fn get_current_tdp() -> TdpControlResult<Option<i64>> {
         Ok(None)
@@ -62,20 +52,19 @@ trait TdpControl {
     }
 }
 
-
-#[derive(Debug, Default, PartialEq, Eq())]
-enum CpuKind {
-    #[cfg(feature = "amd_cpu_family")]
+#[derive(Debug, Default, PartialEq, Eq, Clone, Copy)]
+pub enum CpuKind {
+    #[cfg(feature = "amd_cpu")]
     AmdCpuFamily(AmdCpuFamilyKind),
-    #[cfg(feature = "intel_cpu_family")]
+    #[cfg(feature = "intel_cpu")]
     IntelCpuFamily(IntelCpuFamilyKind),
     #[default]
     UnknownCpuFamily,
 }
 
-#[cfg(feature = "amd_cpu_family")]
-#[derive(Debug, Default, PartialEq, Eq())]
-enum AmdCpuFamilyKind {
+#[cfg(feature = "amd_cpu")]
+#[derive(Debug, Default, PartialEq, Eq, Clone, Copy)]
+pub enum AmdCpuFamilyKind {
     Raven,
     Picasso,
     Renoir,
@@ -88,18 +77,17 @@ enum AmdCpuFamilyKind {
     Phoenix,
     End,
     #[default]
-    UnknownAmdCpuFamily
+    UnknownAmdCpuFamily,
 }
 
-#[cfg(feature = "intel_cpu_family")]
-#[derive(Debug, Default, PartialEq, Eq())]
-enum IntelCpuFamilyKind {
-     #[default]
-    UnknownIntelCpuFamily
+#[cfg(feature = "intel_cpu")]
+#[derive(Debug, Default, PartialEq, Eq, Copy, Clone)]
+pub enum IntelCpuFamilyKind {
+    #[default]
+    UnknownIntelCpuFamily,
 }
-
 
 pub mod reexports {
     //! Re-exports of `WinLinTDPControl` components.
-    pub use super::{OsKind, TdpControlResult, TdpControlError, TdpControl};
+    pub use super::{OsKind, TdpControl, TdpControlError, TdpControlResult};
 }

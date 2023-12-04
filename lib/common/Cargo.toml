@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: The WinLinTDPControl Developers
+#
+# SPDX-License-Identifier: Apache-2.0
+
+[package]
+authors.workspace = true
+description = "Common module for WinLinTDPControl"
+edition.workspace = true
+homepage.workspace = true
+license.workspace = true
+name = "winlintdpcontrol-common"
+readme.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+version.workspace = true
+
+[features]
+amd_cpu = []
+intel_cpu = []
+
+[dependencies]
+anyhow.workspace = true
+thiserror-no-std.workspace = true

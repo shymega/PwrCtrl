@@ -18,3 +18,8 @@
 )]
 #![no_main]
 #![no_std]
+
+#[cfg(target_os = "linux")]
+fn _start() {
+    unimplemented!();
+}

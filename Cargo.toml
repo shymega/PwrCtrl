@@ -4,8 +4,43 @@
 
 [workspace]
 members = [
-    "src/kernel/linux",
-    "src/kernel/windows",
-    "src/common"
+    "bin/kernel/linux",
+    "bin/kernel/windows",
+    "lib/common"
 ]
-resolver = "1"
+resolver = "2"
+
+[workspace.package]
+authors = ["Dom Rodriguez <shymega@shymega.org.uk>"]
+version = "0.1.0"
+rust-version = "1.73.0"
+license = "Apache-2.0"
+repository = "https://github.com/shymega/WinLinTDPControl.git"
+homepage = "https://github.com/shymega/WinLinTDPControl"
+edition = "2021"
+
+[workspace.dependencies]
+anyhow = { version = "1.0.75", default-features = false }
+thiserror-no-std = "2.0.2"
+
+[profile.dev]
+lto = true
+opt-level = 3
+codegen-units = 1
+debug = true
+
+[profile.dev.package."*"]
+codegen-units = 1
+opt-level = 3
+debug = true
+
+[profile.release]
+lto = true
+opt-level = 3
+codegen-units = 1
+debug = false
+
+[profile.release.package."*"]
+codegen-units = 1
+opt-level = 3
+debug = false

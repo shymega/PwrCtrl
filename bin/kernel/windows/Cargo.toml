@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: The WinLinTDPControl Developers
+#
+# SPDX-License-Identifier: Apache-2.0
+
+[package]
+authors.workspace = true
+description = "Windows (Win32) kernel driver for WinLinTDPControl."
+homepage.workspace = true
+license.workspace = true
+name = "winlintdpcontrol-windows"
+readme.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+version.workspace = true
+
+[dependencies]
+winlintdpcontrol-common = { path = "../../../lib/common" }
+
+[target.'cfg(target_os = "windows")'.build-dependencies]
+kernel-build = "0.1.0"
