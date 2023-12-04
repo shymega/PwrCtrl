@@ -4,9 +4,11 @@
 
 [package]
 authors.workspace = true
+categories.workspace = true
 description = "Linux kernel driver for WinLinTDPControl"
 edition.workspace = true
 homepage.workspace = true
+keywords.workspace = true
 license.workspace = true
 name = "winlintdpcontrol-linux"
 readme.workspace = true

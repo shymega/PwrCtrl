@@ -4,8 +4,10 @@
 
 [package]
 authors.workspace = true
-description = "Windows (Win32) kernel driver for WinLinTDPControl."
+categories.workspace = true
+description = "Windows kernel driver for WinLinTDPControl"
 homepage.workspace = true
+keywords.workspace = true
 license.workspace = true
 name = "winlintdpcontrol-windows"
 readme.workspace = true

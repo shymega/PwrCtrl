@@ -17,9 +17,12 @@ authors = ["Dom Rodriguez <shymega@shymega.org.uk>"]
 version = "0.1.0"
 rust-version = "1.73.0"
 license = "Apache-2.0"
+readme = "/README.md"
 repository = "https://github.com/shymega/WinLinTDPControl.git"
 homepage = "https://github.com/shymega/WinLinTDPControl"
 edition = "2021"
+categories = ["osdev", "no-std"]
+keywords = ["tdp", "gaming", "cpu", "gpu", "osdev"]
 
 [workspace.dependencies]
 anyhow = { version = "1.0.75", default-features = false }
