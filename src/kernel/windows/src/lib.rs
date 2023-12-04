@@ -1,6 +1,6 @@
 // SPDX-FileCopyrightText: The WinLinTDPControl Developers
 //
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: Apache-2.0
 //! Entrypoint for `WinLinTDPControl` Windows (Win32) kernel module .
 #![deny(
     warnings,

@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: The WinLinTDPControl Developers
 #
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Apache-2.0
 
 [package]
 name = "winlintdpcontrol-common"
@@ -8,5 +8,5 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-anyhow = { version = "1.0.72", default-features = false }
+anyhow = { version = "1.0.75", default-features = false }
 thiserror-no-std = "2.0.2"

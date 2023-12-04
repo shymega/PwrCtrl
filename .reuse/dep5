@@ -1,0 +1,10 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: WinLinTDPControl
+Upstream-Contact: Dom "shymega" Rodriguez <shymega+winlintdpcontrol@shymega.org.uk>
+Source: 
+
+# Sample paragraph, commented out:
+#
+# Files: src/*
+# Copyright: $YEAR $NAME <$CONTACT>
+# License: ...

@@ -1,7 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2023 The WinLinTDPControl Developers
 
-SPDX-License-Identifier: MIT
+SPDX-License-Identifier: Apache-2.0
 -->
 
 # Contributor Covenant Code of Conduct

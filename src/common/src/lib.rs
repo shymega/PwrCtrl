@@ -1,6 +1,6 @@
 // SPDX-FileCopyrightText: The WinLinTDPControl Developers
 //
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: Apache-2.0
 //! Common (shared) crate for `WinLinTDPControl`.
 #![deny(
     warnings,
@@ -22,16 +22,37 @@
 use thiserror_no_std::Error;
 use anyhow::Result;
 
-pub enum TdpControlError {
-    ControlInterfaceError,
-    GenericDriverError,
-    GetTdpError,
-    SetTdpError,
+#[derive(Debug, Default, PartialEq, Eq)]
+enum OsKind {
+    #[cfg(target_os = "windows")]
+    Windows,
+    #[cfg(target_os = "linux")]
+    Linux,
+    #[default]
+    Unselected,
 }
 
-pub type TdpControlResult<T, E = TdpControlError> = anyhow::Result<T>;
+#[derive(Debug, PartialEq, Eq, Error)]
+enum TdpControlError {
+    ControlInterfaceError {
+        os: OsKind,
+    },
+    GenericDriverError{
+        os: OsKind,
+    },
+    GetTdpError {
+        os: OsKind,
+        cpu: CpuKind
+    },
+    SetTdpError {
+        os: OsKind,
+        cpu: CpuKind
+    },
+}
 
-pub trait TdpControl {
+type TdpControlResult<T, E = TdpControlError> = Result<T, E>;
+
+trait TdpControl {
     fn set_tdp(tdp: i64) -> TdpControlResult<()>;
     fn get_current_tdp() -> TdpControlResult<Option<i64>> {
         Ok(None)
@@ -41,6 +62,44 @@ pub trait TdpControl {
     }
 }
 
+
+#[derive(Debug, Default, PartialEq, Eq())]
+enum CpuKind {
+    #[cfg(feature = "amd_cpu_family")]
+    AmdCpuFamily(AmdCpuFamilyKind),
+    #[cfg(feature = "intel_cpu_family")]
+    IntelCpuFamily(IntelCpuFamilyKind),
+    #[default]
+    UnknownCpuFamily,
+}
+
+#[cfg(feature = "amd_cpu_family")]
+#[derive(Debug, Default, PartialEq, Eq())]
+enum AmdCpuFamilyKind {
+    Raven,
+    Picasso,
+    Renoir,
+    Cezanne,
+    Dali,
+    Lucienne,
+    Vangogh,
+    Rembrandt,
+    Mendocino,
+    Phoenix,
+    End,
+    #[default]
+    UnknownAmdCpuFamily
+}
+
+#[cfg(feature = "intel_cpu_family")]
+#[derive(Debug, Default, PartialEq, Eq())]
+enum IntelCpuFamilyKind {
+     #[default]
+    UnknownIntelCpuFamily
+}
+
+
 pub mod reexports {
     //! Re-exports of `WinLinTDPControl` components.
+    pub use super::{OsKind, TdpControlResult, TdpControlError, TdpControl};
 }
