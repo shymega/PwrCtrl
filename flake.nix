@@ -1,35 +1,37 @@
-# SPDX-FileCopyrightText: 2023 The WinLinTDPControl Developers
-#
-# SPDX-License-Identifier: MIT
-
 {
+  description = "Nix Flake for WinLinTdpControl";
   inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
-    naersk.url = "github:nix-community/naersk";
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
   };
+  outputs = { self, nixpkgs, flake-utils, ... }:
+    flake-utils.lib.eachDefaultSystem
+      (system:
+        let
+          pkgs = nixpkgs.outputs.legacyPackages.${system};
+        in
+        {
+          packages.winlintdpcontrol = pkgs.callPackage ./winlintdpcontrol.nix { };
+          packages.default = self.outputs.packages.${system}.winlintdpcontrol;
 
-  outputs = { self, flake-utils, naersk, nixpkgs }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = (import nixpkgs) {
-          inherit system;
-        };
-
-        naersk' = pkgs.callPackage naersk {};
-
-      in rec {
-        # For `nix build` & `nix run`:
-        defaultPackage = naersk'.buildPackage {
-          src = ./.;
-          nativeBuildInputs = with pkgs; [ pkg-config cmake ] ;
-          buildInputs = with pkgs; [ ];
-        };
-
-        # For `nix develop`:
-        devShell = pkgs.mkShell {
-          nativeBuildInputs = with pkgs; [ rustc cargo ];
-        };
-      }
-    );
+          devShells.default = self.packages.${system}.default.overrideAttrs (super: {
+            nativeBuildInputs = with pkgs;
+              super.nativeBuildInputs
+              ++ [
+                cargo-edit
+                clippy
+                rustfmt
+              ];
+            RUST_SRC_PATH = "${pkgs.rustPlatform.rustLibSrc}";
+          });
+        })
+    // {
+      overlays.default = final: prev: {
+        inherit (self.packages.${final.system}) winlintdpcontrol;
+      };
+    };
 }
