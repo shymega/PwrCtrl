@@ -6,8 +6,10 @@
 members = [
     "bin/kernel/linux",
     "bin/kernel/windows",
+    "bin/stub",
     "lib/common"
 ]
+default-members = ["lib/common", "bin/stub"]
 resolver = "2"
 
 [workspace.package]
