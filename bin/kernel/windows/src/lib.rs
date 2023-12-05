@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: The PwrCtrl Developers
+// SPDX-FileCopyrightText: 2023 The PwrCtrl Developers
 //
 // SPDX-License-Identifier: Apache-2.0
 //! Entrypoint for `PwrCtrl` Windows (Win32) kernel module .
