@@ -6,6 +6,7 @@
 authors.workspace = true
 categories.workspace = true
 description = "Windows kernel driver for PwrCtrl"
+edition.workspace = true
 homepage.workspace = true
 keywords.workspace = true
 license.workspace = true
