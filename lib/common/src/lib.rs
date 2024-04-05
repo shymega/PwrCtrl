@@ -26,11 +26,11 @@ use thiserror_no_std::Error;
 #[derive(Debug, Default, Clone, Copy, PartialEq, Eq)]
 pub enum OsKind {
     #[cfg(target_os = "windows")]
+    #[cfg_attr(target_os = "windows", default)]
     Windows,
     #[cfg(target_os = "linux")]
+    #[cfg_attr(target_os = "linux", default)]
     Linux,
-    #[default]
-    Unselected,
 }
 
 #[derive(Debug, PartialEq, Eq, Error, Clone, Copy)]
@@ -48,47 +48,78 @@ pub trait TdpControl {
     fn get_current_tdp() -> TdpControlResult<Option<i64>> {
         Ok(None)
     }
+    fn get_cpu_kind() -> Option<CpuKind> {
+        Some(CpuKind::default())
+    }
     fn is_control_available() -> TdpControlResult<bool> {
         Ok(false)
     }
 }
 
-#[derive(Debug, Default, PartialEq, Eq, Clone, Copy)]
+#[derive(Debug, PartialEq, Eq, Clone, Copy)]
 pub enum CpuKind {
     #[cfg(feature = "amd_cpu")]
     AmdCpuFamily(AmdCpuFamilyKind),
     #[cfg(feature = "intel_cpu")]
     IntelCpuFamily(IntelCpuFamilyKind),
-    #[default]
+    #[cfg(not(any(feature = "amd_cpu", feature = "intel_cpu")))]
     UnknownCpuFamily,
+    #[cfg(all(feature = "amd_cpu", feature = "intel_cpu"))]
+    UnableDetectCpuFamily,
+}
+
+impl Default for CpuKind {
+    // Override – Rust is reading the code wrong.
+    #[allow(unreachable_code)]
+    fn default() -> Self {
+        #[cfg(all(feature = "amd_cpu", feature = "intel_cpu"))]
+        return Self::UnableDetectCpuFamily;
+
+        #[cfg(feature = "amd_cpu")]
+        return Self::AmdCpuFamily(AmdCpuFamilyKind::default());
+
+        #[cfg(feature = "intel_cpu")]
+        return Self::IntelCpuFamily(IntelCpuFamilyKind::default());
+
+        #[cfg(not(any(feature = "amd_cpu", feature = "intel_cpu")))]
+        return Self::UnknownCpuFamily;
+    }
 }
 
 #[cfg(feature = "amd_cpu")]
 #[derive(Debug, Default, PartialEq, Eq, Clone, Copy)]
 pub enum AmdCpuFamilyKind {
-    Raven,
-    Picasso,
-    Renoir,
     Cezanne,
     Dali,
+    End,
     Lucienne,
-    Vangogh,
-    Rembrandt,
     Mendocino,
     Phoenix,
-    End,
+    Picasso,
+    Raphael,
+    Raven,
+    Rembrandt,
+    Renoir,
+    Vangogh,
     #[default]
-    UnknownAmdCpuFamily,
+    UnknownAmdCpuFamily = -1,
 }
 
 #[cfg(feature = "intel_cpu")]
 #[derive(Debug, Default, PartialEq, Eq, Copy, Clone)]
 pub enum IntelCpuFamilyKind {
     #[default]
-    UnknownIntelCpuFamily,
+    UnknownIntelCpuFamily = -1,
 }
+#[cfg(feature = "amd_cpu")]
+#[derive(Copy, Debug, Clone)]
+pub struct AmdCpuConsts;
+
+#[cfg(feature = "intel_cpu")]
+#[derive(Copy, Debug, Clone)]
+pub struct IntelCpuConsts;
 
 pub mod reexports {
     //! Re-exports of `PwrCtrl` components.
-    pub use super::{OsKind, TdpControl, TdpControlError, TdpControlResult};
+    pub use super::*;
 }
