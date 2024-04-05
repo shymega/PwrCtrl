@@ -25,7 +25,7 @@ categories = ["osdev", "no-std"]
 keywords = ["tdp", "gaming", "cpu", "gpu", "osdev"]
 
 [workspace.dependencies]
-anyhow = { version = "1.0.75", default-features = false }
+anyhow = { version = "1.0.81", default-features = false }
 thiserror-no-std = "2.0.2"
 
 [profile.dev]
